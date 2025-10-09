@@ -1,3 +1,9 @@
 body{
-    background-color: whitesmoke;
+    background-color: rgb(106, 207, 253);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+img{
+    width: 50%;
 }

@@ -1,19 +1,9 @@
 'use strict';
-
-let tamaño = 0;
-let numMinas = 0;
-let minaF = 0;
-let minaC = 0;
-let vivo = true;
-let numCasillas = 0;
-let cont = 0;
+let tamaño = 0, numMinas = 0, minaF = 0, minaC = 0, vivo = true, numCasillas = 0, cont = 0;
 
 tamaño = parseInt(prompt("Introduce el tamaño del tablero"));
 numMinas = Math.max(1, Math.ceil((tamaño * 30) / 100));
 numCasillas = tamaño * tamaño;
-
-console.log("El número de minas es: " + numMinas);
-console.log("El tamaño de casillas es: " + numCasillas);
 
 let tablero = [];
 let tableroJuego = [];
@@ -72,15 +62,21 @@ generarTableroJuego(tamaño);
 
 mostrarTablero(tablero);
 
-mostrarTableroJuego(tableroJuego);
-
 console.log("¡COMIENZA EL JUEGO!");
+console.log("El número de minas es: " + numMinas);
+
+mostrarTableroJuego(tableroJuego);
 
 function jugar() {
     let opcionF = 0;
     let opcionC = 0;
     opcionF = parseInt(prompt("Indica la fila a descubrir"));
     opcionC = parseInt(prompt("Indica la columna a descubrir"));
+
+    if (tableroJuego[opcionF][opcionC] !== "X") {
+        console.log("Casilla ya descubierta");
+        return;
+    }
 
     if (tablero[opcionF][opcionC] === "*") {
         console.log("¡HAS PERDIDO, había una mina!");
@@ -93,8 +89,24 @@ function jugar() {
         mostrarTableroJuego(tableroJuego);
         vivo = false;
     } else {
-        cont++;
         tableroJuego[opcionF][opcionC] = tablero[opcionF][opcionC];
+        cont++;
+
+        if (tablero[opcionF][opcionC] === 0) {
+            for (let i = -1; i <= 1; i++) {
+                if (opcionF + i >= 0 && opcionF + i < tamaño) {
+                    for (let j = -1; j <= 1; j++) {
+                        if (opcionC + j >= 0 && opcionC + j < tamaño) {
+                            if (tableroJuego[opcionF + i][opcionC + j] === "X") {
+                                tableroJuego[opcionF + i][opcionC + j] = tablero[opcionF + i][opcionC + j];
+                                cont++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        console.log("El número de minas es: " + numMinas);
         mostrarTableroJuego(tableroJuego);
     }
 
