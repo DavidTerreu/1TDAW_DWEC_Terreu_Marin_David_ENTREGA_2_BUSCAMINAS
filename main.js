@@ -141,5 +141,7 @@ do {
         minasRestantes: numMinas,
         movimientos: intentos
     };
-    console.log(JSON.stringify(partida));
+    if (vivo) {
+        console.log(JSON.stringify(partida));
+    }
 } while (vivo);
