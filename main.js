@@ -1,10 +1,14 @@
 'use strict';
+
+//Creación variables
 let tamaño = 0, numMinas = 0, minaF = 0, minaC = 0, vivo = true, numCasillas = 0, cont = 0;
 
+//Obtener el tamaño del tablero y con ello, el número de minas
 tamaño = parseInt(prompt("Introduce el tamaño del tablero"));
 numMinas = Math.max(1, Math.ceil((tamaño * 30) / 100));
 numCasillas = tamaño * tamaño;
 
+//Creación del tablero base y el tablero de juego
 let tablero = [];
 let tableroJuego = [];
 
@@ -24,6 +28,7 @@ function generarTableroJuego(tamaño) {
     }
 }
 
+//Función de colocación de minas y los números a su alrededor
 function colocarMinas(numMinas) {
     for (let i = 0; i < numMinas; i++) {
         minaF = Math.floor(Math.random() * tamaño);
@@ -54,19 +59,22 @@ function mostrarTableroJuego(tableroJuego) {
     console.table(tableroJuego);
 }
 
+generarTableroJuego(tamaño);
+
+//Funcion creada para mostrar el tablero de juego al empezar la partida
 function mostrarTablero(tablero) {
     console.table(tablero);
 }
 
-generarTableroJuego(tamaño);
-
 mostrarTablero(tablero);
 
+//Mensaje de comienzo, con el número de minas del tablero
 console.log("¡COMIENZA EL JUEGO!");
 console.log("El número de minas es: " + numMinas);
 
 mostrarTableroJuego(tableroJuego);
 
+//Función de jugar donde se desarrolla el bucle principal para el usuario
 function jugar() {
     let opcionF = 0;
     let opcionC = 0;
