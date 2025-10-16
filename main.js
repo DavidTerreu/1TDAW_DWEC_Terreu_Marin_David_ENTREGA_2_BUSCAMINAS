@@ -1,7 +1,7 @@
 'use strict';
 
 //Creación variables
-let tamaño = 0, numMinas = 0, minaF = 0, minaC = 0, vivo = true, numCasillas = 0, cont = 0;
+let tamaño = 0, numMinas = 0, minaF = 0, minaC = 0, vivo = true, numCasillas = 0, cont = 0, intentos = 0;
 
 //Obtener el tamaño del tablero y con ello, el número de minas
 tamaño = parseInt(prompt("Introduce el tamaño del tablero"));
@@ -49,7 +49,6 @@ function colocarMinas(numMinas) {
                 }
             }
         }
-
     }
 }
 
@@ -114,6 +113,7 @@ function jugar() {
                 }
             }
         }
+        intentos++;
         console.log("El número de minas es: " + numMinas);
         mostrarTableroJuego(tableroJuego);
     }
@@ -134,6 +134,13 @@ function jugar() {
     }
 }
 
+//Bucle principal
 do {
     jugar();
+    let partida = {
+        tablero: tableroJuego,
+        minasRestantes: numMinas,
+        movimientos: intentos
+    };
+    console.log(JSON.stringify(partida));
 } while (vivo);
