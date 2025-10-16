@@ -82,6 +82,7 @@ function jugar() {
 
     if (tableroJuego[opcionF][opcionC] !== "X") {
         console.log("Casilla ya descubierta");
+        mostrarTableroJuego(tableroJuego);
         return;
     }
 
