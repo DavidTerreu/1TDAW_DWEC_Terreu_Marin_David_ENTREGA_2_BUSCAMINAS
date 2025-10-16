@@ -114,7 +114,6 @@ function jugar() {
             }
         }
         intentos++;
-        console.log("El número de minas es: " + numMinas);
         mostrarTableroJuego(tableroJuego);
     }
 
