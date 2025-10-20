@@ -87,14 +87,14 @@ function jugar() {
     }
 
     if (tablero[opcionF][opcionC] === "*") {
+        tableroJuego[opcionF][opcionC] = tablero[opcionF][opcionC];
+        mostrarTableroJuego(tableroJuego);
         console.log("¡HAS PERDIDO, había una mina!");
         console.log("        ,--.!,\n" +
             "     __/   -*-\n" +
             "   ,d08b.  '|'\n" +
             "   0088MM\n" +
             "   '9MMP' ");
-        tableroJuego[opcionF][opcionC] = tablero[opcionF][opcionC];
-        mostrarTableroJuego(tableroJuego);
         vivo = false;
     } else {
         tableroJuego[opcionF][opcionC] = tablero[opcionF][opcionC];
